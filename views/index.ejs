@@ -3,10 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat App</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1>Chat box</h1>
+    <div class="chat-container">
+        <div class="chat-header">Chat App</div>
+
+        <ul id="msgList">
+            <% for(let i=0; i < chats.length; i++) { %>
+                <li><%= chats[i].user %>: <%= chats[i].content %></li>
+            <% } %>
+        </ul>
+
+        <span id="typing">typing...</span>
+
+        <div class="input-area">
+            <input id="startchat" type="hidden" data-roomid="<%= id %>">
+            <input type="text" id="username" placeholder="Enter your name...">
+            <input type="text" id="newmsg" placeholder="Enter your message...">
+            <button id="btn">Send</button>
+        </div>
+    </div>
+
+    <!-- <h1>Chat box</h1>
     <input id="startchat" type="hidden" data-roomid="<%= id %>"></input>
     <input type="text" id="username" placeholder="username...">
     <input type="text" id="newmsg" placeholder="message...">
@@ -17,7 +37,7 @@
         <% for(let i=0; i < chats.length; i++) { %>
             <li><%= chats[i].user %> : <%= chats[i].content %></li>
         <% } %>
-    </ul>
+    </ul> -->
     
     <script src="/socket.io/socket.io.js"></script>
 
