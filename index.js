@@ -32,7 +32,15 @@ io.on('connection', (socket) => {
 });
 
 app.set('view engine', 'ejs');
-app.use('/', express.static(__dirname + '/public'));
+app.set('views', __dirname + '/views');
+
+app.get('/', (req, res) => {
+    const randomRoomId = Math.floor(Math.random() * 1000000);
+    console.log("Redirecting to room:", randomRoomId);  // 👈 add this
+    res.redirect(`/chat/${randomRoomId}`);
+});
+
+app.use(express.static(__dirname + '/public'));
 
 app.get('/chat/:roomid', async (req, res) => {
     const chats = await Chat.find({
